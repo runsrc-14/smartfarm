@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Waether = sequelize.define("weather", {
-        date: {
+        Date: {
             type: Sequelize.DATE,
             default: Date.now
         },
