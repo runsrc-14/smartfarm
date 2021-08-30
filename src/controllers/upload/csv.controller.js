@@ -1,5 +1,5 @@
 const db = require("../../models");
-const Tutorial = db.tutorials;
+const Tutorial = db.weathers;
 
 const fs = require("fs");
 const csv = require("fast-csv");
