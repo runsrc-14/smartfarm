@@ -62,6 +62,7 @@ const getTutorials = (req, res) => {
 };
 const DeleteAPI = (req,res) =>{
   CsvData.splice(0)
+  res.status(200).end(csvData);
   // res.send(CsvData);
 };
 const download = (req, res) => {
