@@ -10,16 +10,15 @@ const initRoutes = require("./routes/csv.routes");
 app.use(express.static(path));
 
 global.__basedir = __dirname + "/";
-// var corsOptions = {
-//   origin: "https://rmuti-surin-smartfarm.herokuapp.com/"
-
-// };
-// app.use(cors(corsOptions));
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://rmuti-surin-smartfarm.herokuapp.com/"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+var corsOptions = {
+  origin: "https://api-rmuti.herokuapp.com/"
+};
+app.use(cors(corsOptions));
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "https://rmuti-surin-smartfarm.herokuapp.com/"); // update to match the domain you will make the request from
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
