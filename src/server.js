@@ -10,7 +10,10 @@ const initRoutes = require("./routes/csv.routes");
 app.use(express.static(path));
 
 global.__basedir = __dirname + "/";
-// app.use(cors(corsOptions));
+var corsOptions = {
+  origin: "https://rmuti-surin-smartfarm.herokuapp.com/"
+};
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
