@@ -29,12 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 db.sequelize.sync();
 const Role = db.role;
 
-app.get('/', function(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-});
 //route
 app.get('/', (req, res) => res.sendFile(path + "index.html"));
 
