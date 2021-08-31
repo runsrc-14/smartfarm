@@ -23,7 +23,7 @@ const upload = async (req, res) => {
         CsvData.push(row);
       })
       .on("end", () => {
-        res.send(CsvData);
+        res.json(CsvData);
         // console.log(tutorials);
         // Tutorial.bulkCreate(tutorials)
         //   .then(() => {
@@ -55,12 +55,15 @@ const getTutorials = (req, res) => {
   //   })
   //   .catch((err) => {
   //     res.status(500).send({
-  //       message:
+  //       message: 
   //         err.message || "Some error occurred while retrieving tutorials.",
   //     });
   //   });
 };
-
+const DeleteAPI = (req,res) =>{
+  CsvData.splice(0)
+  res.send(CsvData);
+};
 const download = (req, res) => {
   Tutorial.findAll().then((objs) => {
     let tutorials = [];
@@ -85,4 +88,5 @@ module.exports = {
   upload,
   getTutorials,
   download,
+  DeleteAPI
 };
