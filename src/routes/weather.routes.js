@@ -29,5 +29,5 @@ module.exports = app => {
     router.delete("/", weathers.deleteAll);
     
     app.use('/api/date', router);
-    app.use("/api/weather", router);
+    app.use("/api/csv2", router);
   };
