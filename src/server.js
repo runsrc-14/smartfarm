@@ -10,12 +10,12 @@ const initRoutes = require("./routes/csv.routes");
 app.use(express.static(path));
 
 global.__basedir = __dirname + "/";
-var corsOptions = {
-  origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200,
-};
-app.use(cors(corsOptions));
+// var corsOptions = {
+//   origin:'*', 
+//   credentials:true,            //access-control-allow-credentials:true
+//   optionSuccessStatus:200,
+// };
+// app.use(cors(corsOptions));
 
 
 // parse requests of content-type - application/json
