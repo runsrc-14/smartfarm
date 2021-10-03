@@ -1,17 +1,17 @@
 const db = require("../../models");
-const Tutorial = db.weathers;
-
+const User = db.user;
+const weathers = db.weathers
 const fs = require("fs");
 const csv = require("fast-csv");
 const CsvParser = require("json2csv").Parser;
-const CsvData = [];
+// let fileuploads = [];
+const Op = db.Sequelize.Op;
 const upload = async (req, res) => {
   try {
     if (req.file == undefined) {
       return res.status(400).send("Please upload a CSV file!");
     }
-
-    // let tutorials = [];
+    let fileuploads = [];
     let path = __basedir + "/resources/static/assets/uploads/" + req.file.filename;
 
     fs.createReadStream(path)
@@ -20,24 +20,47 @@ const upload = async (req, res) => {
         throw error.message;
       })
       .on("data", (row) => {
-        CsvData.push(row);
+        fileuploads.push(row);
       })
       .on("end", () => {
-        res.json(CsvData);
-        // console.log(tutorials);
-        // Tutorial.bulkCreate(tutorials)
-        //   .then(() => {
-        //     res.status(200).send({
-        //       message:
-        //         "Uploaded the file successfully: " + req.file.originalname,
-        //     });
-        //   })
-        //   .catch((error) => {
-        //     res.status(500).send({
-        //       message: "Fail to import data into database!",
-        //       error: error.message,
-        //     });
-        //   });
+        res.send({ message: fileuploads.length })
+        for (i = 0; i < fileuploads.length; i++) {
+          weathers.create({
+            Date: fileuploads[i].Date,
+            MaxTemp: fileuploads[i].MaxTemp,
+            MinTemp: fileuploads[i].MinTemp,
+            Rainfall: fileuploads[i].Rainfall,
+            Evaporation: fileuploads[i].Evaporation,
+            Sunshine: fileuploads[i].Sunshine,
+            WindGustSpeed: fileuploads[i].WindGustSpeed,
+            WindSpeed9am: fileuploads[i].WindSpeed9am,
+            WindSpeed3pm: fileuploads[i].WindSpeed3pm,
+            Humidity9am: fileuploads[i].Humidity9am,
+            Humidity3pm: fileuploads[i].Humidity3pm,
+            Pressure9am: fileuploads[i].Pressure9am,
+            Pressure3pm: fileuploads[i].Pressure3pm,
+            Cloud9am: fileuploads[i].Cloud9am,
+            Cloud3pm: fileuploads[i].Cloud3pm,
+            Temp9am: fileuploads[i].Temp9am,
+            Temp3pm: fileuploads[i].Temp3pm,
+            RISK_MM: fileuploads[i].RISK_MM,
+            userId: req.params.id
+          }).then(() => {
+            res.status(200).send({
+              message:
+                "Uploaded the file successfully: " + req.file.originalname + req.params.id,
+            });
+          })
+
+            // })
+            .catch((error) => {
+              res.status(500).send({
+                message: "Fail to import data into database!",
+                error: error.message,
+              });
+            });
+        }
+        // fileuploads = []
       });
   } catch (error) {
     console.log(error);
@@ -46,9 +69,48 @@ const upload = async (req, res) => {
     });
   }
 };
+const Getcsv = (req, res) => {
+  // if (!fileuploads) {
+  //   return res.status(400).send({ errorMsg: 'ไม่มีข้อมูล.' });
+  // }
+  // res.send(
+  //   fileuploads
+  // )
+  const id = req.params.id;
+  weathers.findAll({
+    where: {
+      userId: {
+        [Op.eq]: id
+      }
+    }
+  })
+    .then((data) => {
+      if (data) {
+        res.send(
+          data
+        )
+      }
+      else {
+        res.send({ message: 'Not data' })
+      }
 
-const getTutorials = (req, res) => {
-  res.send(CsvData);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving User with id=" + id,
+      });
+    });
+  // res.send({ message: id })
+
+  // if (_id[0] == _idGet[0]) {
+  // res.send(
+  //   fileuploads
+  // )
+  // }
+
+
+
+  // res.send(fileuploads);
   // Tutorial.findAll()
   //   .then((data) => {
   //     res.send(data);
@@ -60,33 +122,22 @@ const getTutorials = (req, res) => {
   //     });
   //   });
 };
-const DeleteAPI = (req,res) =>{
-  CsvData.splice(0)
-  res.send(CsvData);
-};
-const download = (req, res) => {
-  Tutorial.findAll().then((objs) => {
-    let tutorials = [];
-
-    objs.forEach((obj) => {
-      const { id, title, description, published } = obj;
-      tutorials.push({ id, title, description, published });
-    });
-
-    const csvFields = ["Id", "Title", "Description", "Published"];
-    const csvParser = new CsvParser({ csvFields });
-    const csvData = csvParser.parse(tutorials);
-
-    res.setHeader("Content-Type", "text/csv");
-    res.setHeader("Content-Disposition", "attachment; filename=tutorials.csv");
-
-    res.status(200).end(csvData);
-  });
-};
-
+const GetAllcsv = (req, res) => {
+  weathers.findAll().then((response) => {
+    res.send(response)
+    // if (data[0].userId) {
+    //   res.send(data[0].userId)
+    // }
+  })
+  // res.send(fileuploads);
+}
+const Deletecsv = (req, res) => {
+  fileuploads.splice(0)
+  return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
+}
 module.exports = {
+  GetAllcsv,
   upload,
-  getTutorials,
-  download,
-  DeleteAPI
+  Getcsv,
+  Deletecsv
 };

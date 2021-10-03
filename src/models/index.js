@@ -19,17 +19,17 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 });
 
 const db = {};
-// (async () => {
-//   await sequelize.sync();
-// })();
+(async () => {
+  await sequelize.sync();
+})();
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.weathers = require("./waether.model.js")(sequelize, Sequelize);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.user_roles = require("../models/user_roles.model")(sequelize, Sequelize);
+
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -41,9 +41,11 @@ db.user.belongsToMany(db.role, {
   foreignKey: "userId",
   otherKey: "roleId"
 });
+// add csv
 //Relations
-db.user.hasMany(db.user_roles, {foreignKey: 'userId'})
-db.user_roles.belongsTo(db.user, {foreignKey: 'userId'})
+db.user.hasMany(db.user_roles, { foreignKey: 'userId' })
+db.user.hasMany(db.weathers, {foreignKey: 'userId'})
+db.user_roles.belongsTo(db.user, { foreignKey: 'userId' })
 
 db.ROLES = ["user", "admin", "moderator"];
 module.exports = db;
