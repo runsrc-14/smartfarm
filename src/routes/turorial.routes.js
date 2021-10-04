@@ -23,6 +23,7 @@ module.exports = app => {
   // Delete all Tutorials 
   router.delete("/", tutorials.deleteAll);
 
-  app.use('/api/usersAll', [authJwt.verifyToken, authJwt.isAdmin], router);
+  app.use('/api/usersAll', [authJwt.verifyToken], router);
   // app.use("/api/csv", router);
 };
+// , authJwt.isAdmin
