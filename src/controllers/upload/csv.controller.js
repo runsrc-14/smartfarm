@@ -44,7 +44,7 @@ const upload = async (req, res) => {
             Temp9am: fileuploads[i].Temp9am,
             Temp3pm: fileuploads[i].Temp3pm,
             RISK_MM: fileuploads[i].RISK_MM,
-            userId: req.params.id
+            // userId: req.params.id
           }).then(() => {
             res.status(200).send({
               message:
