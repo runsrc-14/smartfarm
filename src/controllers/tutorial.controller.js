@@ -66,7 +66,7 @@ exports.findAll = (req, res) => {
     include: {
       model: User_ro, where: {
         roleId: {
-          [Op.ne]: 3
+          [Op.ne]: 2
         }
       }
     }
