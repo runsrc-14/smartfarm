@@ -9,6 +9,8 @@ let routes = (app) => {
   router.get("/GetCSv/", csvController.GetAllcsv);
   // router.get("/tutorials/", csvController.GetAllcsv);
   router.delete("/DeleteCSV/:id", csvController.Deletecsv);
+  router.delete("/DeleteCSV", csvController.DeleteAllcsv);
+
   
   // router.get("/download", csvController.download);
 

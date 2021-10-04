@@ -70,12 +70,6 @@ const upload = async (req, res) => {
   }
 };
 const Getcsv = (req, res) => {
-  // if (!fileuploads) {
-  //   return res.status(400).send({ errorMsg: 'ไม่มีข้อมูล.' });
-  // }
-  // res.send(
-  //   fileuploads
-  // )
   const id = req.params.id;
   weathers.findAll({
     where: {
@@ -100,31 +94,13 @@ const Getcsv = (req, res) => {
         message: "Error retrieving User with id=" + id,
       });
     });
-  // res.send({ message: id })
-
-  // if (_id[0] == _idGet[0]) {
-  // res.send(
-  //   fileuploads
-  // )
-  // }
-
-
-
-  // res.send(fileuploads);
-  // Tutorial.findAll()
-  //   .then((data) => {
-  //     res.send(data);
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).send({
-  //       message: 
-  //         err.message || "Some error occurred while retrieving tutorials.",
-  //     });
-  //   });
 };
 const GetAllcsv = (req, res) => {
-  weathers.findAll().then((response) => {
-    res.send(response)
+  weathers.findAll().then((data) => {
+    if (data) {
+      res.send(data)
+    }
+
     // if (data[0].userId) {
     //   res.send(data[0].userId)
     // }
@@ -156,9 +132,15 @@ const Deletecsv = (req, res) => {
       });
     });
 }
+const DeleteAllcsv = (req, res) => {
+  weathers.destroy().then((data)=>{
+    res.send(data)
+  })
+}
 module.exports = {
   GetAllcsv,
   upload,
   Getcsv,
-  Deletecsv
+  Deletecsv,
+  DeleteAllcsv
 };
