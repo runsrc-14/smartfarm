@@ -100,10 +100,6 @@ const GetAllcsv = (req, res) => {
     if (data) {
       res.send(data)
     }
-
-    // if (data[0].userId) {
-    //   res.send(data[0].userId)
-    // }
   })
   // res.send(fileuploads);
 }

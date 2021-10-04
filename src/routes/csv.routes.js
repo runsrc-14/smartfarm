@@ -7,7 +7,7 @@ let routes = (app) => {
   router.post("/upload/:id", upload.single("file"), csvController.upload);
   router.get("/GetCSv/:id", csvController.Getcsv);
   router.get("/GetCSv/", csvController.GetAllcsv);
-  // router.get("/tutorials/", csvController.GetAllcsv);
+  router.get("/tutorials/", csvController.GetAllcsv);
   router.delete("/DeleteCSV/:id", csvController.Deletecsv);
   router.delete("/DeleteCSV", csvController.DeleteAllcsv);
 
