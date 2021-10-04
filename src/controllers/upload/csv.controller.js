@@ -132,8 +132,29 @@ const GetAllcsv = (req, res) => {
   // res.send(fileuploads);
 }
 const Deletecsv = (req, res) => {
-  fileuploads.splice(0)
-  return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
+  // fileuploads.splice(0)
+  // return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
+  const id = req.params.id;
+
+  weathers.destroy({
+    where: { userId: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "User was deleted successfully!",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete User with id=${id}. Maybe User was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete User with id=" + id,
+      });
+    });
 }
 module.exports = {
   GetAllcsv,
