@@ -96,7 +96,7 @@ const GetAllcsv = (req, res) => {
   // res.send(fileuploads);
   weathers.findAll().then((data) => {
     if (data) {
-      res.send(data)
+      res.send(data.id)
     }
   })
 
