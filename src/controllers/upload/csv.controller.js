@@ -23,41 +23,41 @@ const upload = async (req, res) => {
         fileuploads.push(row);
       })
       .on("end", () => {
-        //  res.send({ fileuploads })
-        for (i = 0; i < fileuploads.length; i++) {
-          weathers.create({
-            Date: fileuploads[i].Date,
-            MaxTemp: fileuploads[i].MaxTemp,
-            MinTemp: fileuploads[i].MinTemp,
-            Rainfall: fileuploads[i].Rainfall,
-            Evaporation: fileuploads[i].Evaporation,
-            Sunshine: fileuploads[i].Sunshine,
-            WindGustSpeed: fileuploads[i].WindGustSpeed,
-            WindSpeed9am: fileuploads[i].WindSpeed9am,
-            WindSpeed3pm: fileuploads[i].WindSpeed3pm,
-            Humidity9am: fileuploads[i].Humidity9am,
-            Humidity3pm: fileuploads[i].Humidity3pm,
-            Pressure9am: fileuploads[i].Pressure9am,
-            Pressure3pm: fileuploads[i].Pressure3pm,
-            Cloud9am: fileuploads[i].Cloud9am,
-            Cloud3pm: fileuploads[i].Cloud3pm,
-            Temp9am: fileuploads[i].Temp9am,
-            Temp3pm: fileuploads[i].Temp3pm,
-            RainToday:fileuploads[i].RainToday,
-            RISK_MM: fileuploads[i].RISK_MM,
-            userId: req.params.id
-          }).then(() => {
-            res.status(200).send({
-              message:
-                "Uploaded the file successfully: " + req.file.originalname + req.params.id,
-            });
-          }).catch((error) => {
-            res.status(500).send({
-              message: "Fail to import data into database!",
-              error: error.message,
-            });
-          });
-        }
+        res.send(fileuploads.Date)
+        // for (i = 0; i < fileuploads.length; i++) {
+        //   weathers.create({
+        //     Date: fileuploads[i].Date,
+        //     MaxTemp: fileuploads[i].MaxTemp,
+        //     MinTemp: fileuploads[i].MinTemp,
+        //     Rainfall: fileuploads[i].Rainfall,
+        //     Evaporation: fileuploads[i].Evaporation,
+        //     Sunshine: fileuploads[i].Sunshine,
+        //     WindGustSpeed: fileuploads[i].WindGustSpeed,
+        //     WindSpeed9am: fileuploads[i].WindSpeed9am,
+        //     WindSpeed3pm: fileuploads[i].WindSpeed3pm,
+        //     Humidity9am: fileuploads[i].Humidity9am,
+        //     Humidity3pm: fileuploads[i].Humidity3pm,
+        //     Pressure9am: fileuploads[i].Pressure9am,
+        //     Pressure3pm: fileuploads[i].Pressure3pm,
+        //     Cloud9am: fileuploads[i].Cloud9am,
+        //     Cloud3pm: fileuploads[i].Cloud3pm,
+        //     Temp9am: fileuploads[i].Temp9am,
+        //     Temp3pm: fileuploads[i].Temp3pm,
+        //     RainToday:fileuploads[i].RainToday,
+        //     RISK_MM: fileuploads[i].RISK_MM,
+        //     userId: req.params.id
+        //   }).then(() => {
+        //     res.status(200).send({
+        //       message:
+        //         "Uploaded the file successfully: " + req.file.originalname + req.params.id,
+        //     });
+        //   }).catch((error) => {
+        //     res.status(500).send({
+        //       message: "Fail to import data into database!",
+        //       error: error.message,
+        //     });
+        //   });
+        // }
         // fileuploads = []
       });
   } catch (error) {
