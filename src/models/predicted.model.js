@@ -70,5 +70,5 @@ module.exports = (sequelize, Sequelize) => {
 
     );
 
-    return Waether;
+    return Predicted;
 };

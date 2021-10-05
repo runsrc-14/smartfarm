@@ -10,6 +10,7 @@ let routes = (app) => {
   router.delete("/Delete_model/:id",model_csv.DeleteOne);
   router.delete("/Delete_model",model_csv.DeleteAllModel);
   router.get("/predicted/:id",model_csv.getpredict);
+  
   router.post("/upload/:id", upload.single("file"), csvController.upload);
   router.get("/GetCSv/:id", csvController.Getcsv);
   router.get("/GetCSv/", csvController.GetAllcsv);
