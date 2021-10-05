@@ -19,18 +19,10 @@ module.exports = (sequelize, Sequelize) => {
         Sunshine: {
             type: Sequelize.FLOAT,
         },
-        // WindGustDir: {
-        //     type: Sequelize.STRING,
-        // },
         WindGustSpeed: {
             type: Sequelize.FLOAT,
         },
-        // WindDir9am: {
-        //     type: Sequelize.STRING,
-        // },
-        // WindDir3pm: {
-        //     type: Sequelize.STRING,
-        // },
+
         WindSpeed9am: {
             type: Sequelize.FLOAT,
         },
@@ -59,7 +51,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.FLOAT,
         },
         Temp3pm: {
-            type: Sequelize.STRING,
+            type: Sequelize.FLOAT,
         },
         RainToday: {
             type: Sequelize.STRING,
