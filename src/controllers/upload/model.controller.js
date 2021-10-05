@@ -57,9 +57,8 @@ const getmodel_csv = (req, res) => {
 };
 const DeleteOne = (req, res) => {
     const id = req.params.id;
-
     model.destroy({
-        where: { userId: id },
+        where: { id: id },
     })
         .then((num) => {
             if (num == 1) {
