@@ -116,7 +116,7 @@ const GetAllcsv = (req, res) => {
       'Temp3pm',
       'RainToday',
       'RISK_MM',
-      // 'userId'
+      'userId'
     ]
   }).then((data) => {
     if (data) {

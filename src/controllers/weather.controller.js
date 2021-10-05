@@ -13,27 +13,27 @@ exports.create = (req, res) => {
   }
 
   // Create a Tutorial
-  const weather = {
-    STA: req.body.STA,
-    Date: req.body.Date,
-    // Precip:	req.body.Precip,
-    // WindGustSpd: req.body.WindGustSpd,
-    MaxTemp: req.body.MaxTemp,
-    MinTemp: req.body.MinTemp,
-    MeanTemp: req.body.MeanTemp,
-    // Snowfall:	req.body.Snowfall,
-    // PoorWeather: req.body.PoorWeather,
-    // title: req.body.title,
-    // MO: req.body.MO,
-    // DA: req.body.DA,
-    // PRCP: req.body.PRCP,
-    // DR: req.body.DR,
-    // SPD: req.body.SPD,
-    // MAX: req.body.MAX,
-    // MIN: req.body.MIN,
-    // MEA: req.body.MEA,
-    // SNF: req.body.SNF,
-  };
+  // const weather = {
+  //   STA: req.body.STA,
+  //   Date: req.body.Date,
+  //   // Precip:	req.body.Precip,
+  //   // WindGustSpd: req.body.WindGustSpd,
+  //   MaxTemp: req.body.MaxTemp,
+  //   MinTemp: req.body.MinTemp,
+  //   MeanTemp: req.body.MeanTemp,
+  //   // Snowfall:	req.body.Snowfall,
+  //   // PoorWeather: req.body.PoorWeather,
+  //   // title: req.body.title,
+  //   // MO: req.body.MO,
+  //   // DA: req.body.DA,
+  //   // PRCP: req.body.PRCP,
+  //   // DR: req.body.DR,
+  //   // SPD: req.body.SPD,
+  //   // MAX: req.body.MAX,
+  //   // MIN: req.body.MIN,
+  //   // MEA: req.body.MEA,
+  //   // SNF: req.body.SNF,
+  // };
 
   // Save weather in the database
   Weather.create(weather)
