@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Model_csv = sequelize.define("model", {
+    const Model_csv = sequelize.define("weatherv4", {
         Date: {
             type: Sequelize.DATE,
             default: Date.now
