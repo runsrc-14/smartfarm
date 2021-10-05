@@ -98,6 +98,7 @@ const GetAllcsv = (req, res) => {
     attributes: [
       'Date',
       'MinTemp',
+      'MaxTemp',
       'Rainfall',
       'Evaporation',
       'Sunshine',
@@ -112,6 +113,7 @@ const GetAllcsv = (req, res) => {
       'Cloud3pm',
       'Temp9am',
       'Temp3pm',
+      'RainToday',
       'RISK_MM',
       'userId']
   }).then((data) => {
