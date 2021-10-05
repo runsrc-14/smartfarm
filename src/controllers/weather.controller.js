@@ -101,7 +101,6 @@ exports.findDate = (req, res) => {
 // Find a single weather with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
   Weather.findByPk(id)
     .then((data) => {
       res.send(data);

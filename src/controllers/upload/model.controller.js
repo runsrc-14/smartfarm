@@ -1,5 +1,6 @@
 const db = require("../../models");
 const model = db.model
+const predict = db.predict
 const fs = require("fs");
 const csv = require("fast-csv");
 // let fileuploads = [];
@@ -92,9 +93,28 @@ const DeleteAllModel = (req, res) => {
             });
         });
 }
+const getpredict = async (req, res) => {
+    const id = req.params.id;
+    predict.findAll({
+        where: {
+            userId: {
+                [Op.eq]: id
+            }
+        }
+    }).then((data) => {
+        if (data) {
+            res.send(data)
+        }
+        else {
+            res.send({ message: 'Not data' })
+        }
+
+    })
+}
 module.exports = {
     upload,
     getmodel_csv,
     DeleteOne,
-    DeleteAllModel
+    DeleteAllModel,
+    getpredict
 };
