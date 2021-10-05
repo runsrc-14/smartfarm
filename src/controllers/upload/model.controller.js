@@ -55,8 +55,47 @@ const getmodel_csv = (req, res) => {
             });
         });
 };
+const DeleteOne = (req, res) => {
+    const id = req.params.id;
 
+    model.destroy({
+        where: { userId: id },
+    })
+        .then((num) => {
+            if (num == 1) {
+                res.send({
+                    message: "User was deleted successfully!",
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete User with id=${id}. Maybe User was not found!`,
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Could not delete User with id=" + id,
+            });
+        });
+}
+const DeleteAllModel = (req, res) => {
+    model.destroy({
+        where: {},
+        truncate: false,
+    })
+        .then((nums) => {
+            res.send({ message: `${nums} weathers were deleted successfully!` });
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while removing all weathers.",
+            });
+        });
+}
 module.exports = {
     upload,
-    getmodel_csv
+    getmodel_csv,
+    DeleteOne,
+    DeleteAllModel
 };
