@@ -149,8 +149,8 @@ const Deletecsv = (req, res) => {
     });
 }
 const DeleteAllcsv = (req, res) => {
-  // fileuploads.splice(0)
-  // return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
+  fileuploads.splice(0)
+  return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
   weathers.destroy({
     where: {},
     truncate: true,
