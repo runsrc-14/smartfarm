@@ -4,14 +4,14 @@ const weathers = db.weathers
 const fs = require("fs");
 const csv = require("fast-csv");
 const CsvParser = require("json2csv").Parser;
-// let fileuploads = [];
+let fileuploads = [];
 const Op = db.Sequelize.Op;
 const upload = async (req, res) => {
   try {
     if (req.file == undefined) {
       return res.status(400).send("Please upload a CSV file!");
     }
-    let fileuploads = [];
+    // let fileuploads = [];
     let path = __basedir + "/resources/static/assets/uploads/" + req.file.filename;
 
     fs.createReadStream(path)
@@ -93,7 +93,7 @@ const Getcsv = (req, res) => {
     });
 };
 const GetAllcsv = (req, res) => {
-  // res.send(fileuploads);
+  res.send(fileuploads);
   weathers.findAll({
     attributes: [
       'Date',
