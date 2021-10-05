@@ -94,12 +94,11 @@ const DeleteAllModel = (req, res) => {
         });
 }
 const getpredict = async (req, res) => {
+    res.send()
     const id = req.params.id;
     predict.findAll({
         where: {
-            userId: {
-                [Op.eq]: id
-            }
+            id: id
         }
     }).then((data) => {
         if (data) {
