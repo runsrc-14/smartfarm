@@ -151,7 +151,7 @@ const DeleteAllcsv = (req, res) => {
   // return res.send(fileuploads).send({ message: 'ลบข้อมูลแล้วจ้ะ' });
   weathers.destroy({
     where: {},
-    truncate: false,
+    truncate: true,
   }).then((result) => {
     res.send(result)
   }).catch((err) => {
