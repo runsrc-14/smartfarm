@@ -44,7 +44,7 @@ const upload = async (req, res) => {
 };
 
 const getmodel_csv = (req, res) => {
-    Tutorial.findAll()
+    model.findAll()
         .then((data) => {
             res.send(data);
         })
